@@ -27,7 +27,7 @@ namespace NoMoreCompanyLogo
     [HarmonyPatch]
     internal static class MoreCompanyPatches
     {
-        [HarmonyPatch(typeof(MenuManagerLogoOverridePatch), nameof(MenuManagerLogoOverridePatch.Postfix))]
+        [HarmonyPatch(typeof(MenuManagerLogoOverridePatch), nameof(MenuManagerLogoOverridePatch.Awake_Postfix))]
         [HarmonyTranspiler]
         private static IEnumerable<CodeInstruction> RemoveLogoPatchTranspiler(IEnumerable<CodeInstruction> instructions)
         {
