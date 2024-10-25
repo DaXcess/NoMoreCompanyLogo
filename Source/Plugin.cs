@@ -13,7 +13,7 @@ namespace NoMoreCompanyLogo
     {
         private const string PLUGIN_GUID = "io.daxcess.nomorecompanylogo";
         private const string PLUGIN_NAME = "NoMoreCompanyLogo";
-        private const string PLUGIN_VERSION = "1.0.1";
+        private const string PLUGIN_VERSION = "1.0.2";
 
         private void Awake()
         {
