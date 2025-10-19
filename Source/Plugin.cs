@@ -44,8 +44,8 @@ namespace NoMoreCompanyLogo
         private static IEnumerable<CodeInstruction> DisableVersionTextOverride(IEnumerable<CodeInstruction> instructions)
         {
             return new CodeMatcher(instructions)
-                .MatchForward(false, new CodeMatch(OpCodes.Ldstr, "v{0} (MC)"))
-                .SetOperandAndAdvance("v{0}")
+                .MatchForward(false, new CodeMatch(OpCodes.Ldstr, "{0} (MC)"))
+                .SetOperandAndAdvance("{0}")
                 .InstructionEnumeration();
         }
     }
