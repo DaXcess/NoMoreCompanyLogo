@@ -4,20 +4,28 @@ using MoreCompany;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
+using BepInEx.Bootstrap;
 
 namespace NoMoreCompanyLogo
 {
     [BepInPlugin(PLUGIN_GUID, PLUGIN_NAME, PLUGIN_VERSION)]
-    [BepInDependency("me.swipez.melonloader.morecompany")]
+    [BepInDependency("me.swipez.melonloader.morecompany", BepInDependency.DependencyFlags.SoftDependency)]
     public class Plugin : BaseUnityPlugin
     {
+        private const string MORECOMPANY = "me.swipez.melonloader.morecompany";
+
         private const string PLUGIN_GUID = "io.daxcess.nomorecompanylogo";
         private const string PLUGIN_NAME = "NoMoreCompanyLogo";
         private const string PLUGIN_VERSION = "1.1.0";
 
         private void Awake()
         {
-            // Plugin startup logic
+            if (!Chainloader.PluginInfos.ContainsKey(MORECOMPANY))
+            {
+                Logger.LogDebug("MoreCompany is not installed, shutting down...");
+                return;
+            }
+
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
 
             Logger.LogInfo($"Plugin {PLUGIN_GUID} is loaded!");
