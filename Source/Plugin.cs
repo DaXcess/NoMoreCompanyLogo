@@ -13,14 +13,14 @@ namespace NoMoreCompanyLogo
     {
         private const string PLUGIN_GUID = "io.daxcess.nomorecompanylogo";
         private const string PLUGIN_NAME = "NoMoreCompanyLogo";
-        private const string PLUGIN_VERSION = "1.0.2";
+        private const string PLUGIN_VERSION = "1.1.0";
 
         private void Awake()
         {
             // Plugin startup logic
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
 
-            Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+            Logger.LogInfo($"Plugin {PLUGIN_GUID} is loaded!");
         }
     }
 
@@ -44,8 +44,8 @@ namespace NoMoreCompanyLogo
         private static IEnumerable<CodeInstruction> DisableVersionTextOverride(IEnumerable<CodeInstruction> instructions)
         {
             return new CodeMatcher(instructions)
-                .MatchForward(false, new CodeMatch(OpCodes.Ldstr, "v{0} (MC)"))
-                .SetOperandAndAdvance("v{0}")
+                .MatchForward(false, new CodeMatch(OpCodes.Ldstr, "{0} (MC)"))
+                .SetOperandAndAdvance("{0}")
                 .InstructionEnumeration();
         }
     }
